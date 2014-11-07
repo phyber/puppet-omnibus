@@ -20,15 +20,25 @@ class PuppetOmnibus < FPM::Cookery::Recipe
     'automation-puppet',
   ]
 
-  replaces  automation_packages
+  automation_debian = [
+    'automation-libruby', 'automation-augeas-lenses', 'automation-libaugeas0',
+    'automation-libaugeas-ruby1.8', 'automation-ruby-stomp', 'automation-libruby1.8',
+    'automation-libshadow-ruby1.8',
+  ]
+
+  automation_redhat = [
+    'automation-ruby(abi) = 2.0', 'automation-ruby(x86-64)', '/opt/automation/usr/bin/ruby',
+    'automation-rubygem-rack', 'automation-mcollective-client',
+  ]
 
   platforms [:ubuntu, :debian] do
-    provides automation_packages
+    replaces [ automation_packages, automation_debian ].flatten
+    provides [ automation_packages, automation_debian ].flatten
   end
 
   platforms [:fedora, :redhat, :centos] do
-    provides  [ automation_packages, 'automation-ruby(abi) = 2.0', 
-        'automation-ruby(x86-64)', '/opt/automation/usr/bin/ruby' ].flatten
+    replaces [ automation_packages, automation_redhat ].flatten
+    provides [ automation_packages, automation_redhat ].flatten
   end
 
   source '', :with => :noop
