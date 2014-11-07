@@ -34,8 +34,9 @@ class PuppetOmnibus < FPM::Cookery::Recipe
   ]
 
   platforms [:ubuntu, :debian] do
-    replaces [ automation_packages, automation_debian ].flatten
     provides [ automation_packages, automation_debian ].flatten
+    conflicts [ automation_packages, automation_debian ].flatten
+    replaces [ automation_packages, automation_debian ].flatten
   end
 
   platforms [:fedora, :redhat, :centos] do
