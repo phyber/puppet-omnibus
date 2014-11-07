@@ -28,7 +28,7 @@ class PuppetOmnibus < FPM::Cookery::Recipe
 
   automation_redhat = [
     'automation-ruby(abi) = 2.0', 'automation-ruby(x86-64)', '/opt/automation/usr/bin/ruby',
-    'automation-rubygem-rack'
+    'automation-rubygem-rack', 'automation-mcollective-client',
   ]
 
   platforms [:ubuntu, :debian] do
