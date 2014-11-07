@@ -23,7 +23,7 @@ class PuppetOmnibus < FPM::Cookery::Recipe
   automation_debian = [
     'automation-libruby', 'automation-augeas-lenses', 'automation-libaugeas0',
     'automation-libaugeas-ruby1.8', 'automation-ruby-stomp', 'automation-libruby1.8',
-    'automation-libshadow-ruby1.8',
+    'automation-libshadow-ruby1.8', 'automation-puppet-common',
   ]
 
   automation_redhat = [
