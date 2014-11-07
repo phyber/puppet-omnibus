@@ -12,23 +12,25 @@ class PuppetOmnibus < FPM::Cookery::Recipe
   automation_packages = [
     'automation-hiera', 'automation-rubygems', 'automation-rubygem-right_http_connection',
     'automation-ruby-augeas', 'automation-hiera-gpg', 'automation-mcollective',
-    'automation-ruby', 'automation-facter', 'automation-ruby-rdoc', 'automation-rubygem-rake',
-    'automation-rubygem-flexmock', 'automation-rubygem-right_aws', 'automation-hiera-aws',
-    'automation-rubygem-json', 'automation-mcollective-common', 'automation-rubygem-SyslogLogger',
-    'automation-ruby-libs', 'automation-ruby-irb', 'automation-rubygem-gpgme',
-    'automation-ruby-shadow', 'automation-rubygem-stomp', 'automation-rubygem-sf-deploy',
-    'automation-puppet',
+    'automation-ruby', 'automation-facter', 'automation-ruby-rdoc', 'automation-rubygem-flexmock',
+    'automation-rubygem-right_aws', 'automation-hiera-aws', 'automation-rubygem-json',
+    'automation-mcollective-common', 'automation-rubygem-SyslogLogger', 'automation-ruby-libs',
+    'automation-ruby-irb', 'automation-ruby-shadow', 'automation-puppet', 'automation-rubygems',
   ]
 
   automation_debian = [
     'automation-libruby', 'automation-augeas-lenses', 'automation-libaugeas0',
     'automation-libaugeas-ruby1.8', 'automation-ruby-stomp', 'automation-libruby1.8',
-    'automation-libshadow-ruby1.8',
+    'automation-libshadow-ruby1.8', 'automation-puppet-common', 'automation-ruby1.8',
+    'automation-ruby-gpgme', 'automation-ruby-hiera', 'automation-ruby-hiera-gpg',
+    'automation-ruby-hiera-puppet', 'automation-ruby-json', 'automation-ruby-stomp',
   ]
 
   automation_redhat = [
     'automation-ruby(abi) = 2.0', 'automation-ruby(x86-64)', '/opt/automation/usr/bin/ruby',
-    'automation-rubygem-rack', 'automation-mcollective-client',
+    'automation-rubygem-rack', 'automation-rubygem-rake', 'automation-mcollective-client',
+    'automation-hiera-puppet', 'automation-rubygem-gpgme', 'automation-rubygem-stomp',
+    'automation-rubygem-sf-deploy',
   ]
 
   platforms [:ubuntu, :debian] do
