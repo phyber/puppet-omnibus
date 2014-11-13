@@ -24,13 +24,14 @@ class PuppetOmnibus < FPM::Cookery::Recipe
     'automation-libshadow-ruby1.8', 'automation-puppet-common', 'automation-ruby1.8',
     'automation-ruby-gpgme', 'automation-ruby-hiera', 'automation-ruby-hiera-gpg',
     'automation-ruby-hiera-puppet', 'automation-ruby-json', 'automation-ruby-stomp',
+    'automation-ruby-zcollective', 'automation-ruby-netaddr',
   ]
 
   automation_redhat = [
     'automation-ruby(abi) = 2.0', 'automation-ruby(x86-64)', '/opt/automation/usr/bin/ruby',
     'automation-rubygem-rack', 'automation-rubygem-rake', 'automation-mcollective-client',
     'automation-hiera-puppet', 'automation-rubygem-gpgme', 'automation-rubygem-stomp',
-    'automation-rubygem-sf-deploy',
+    'automation-rubygem-sf-deploy', 'automation-rubygem-zcollective', 'automation-rubygem-netaddr',
   ]
 
   platforms [:ubuntu, :debian] do
