@@ -29,7 +29,7 @@ class AwsGems < FPM::Cookery::Recipe
 
   def gem_install(name, version = nil)
     v = version.nil? ? '' : "-v #{version}"
-    cleanenv_safesystem "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}"
+    environment.with_clean { safesystem( "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}" ) }
   end
 
 end

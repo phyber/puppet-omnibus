@@ -13,7 +13,7 @@ class Mcollective < FPM::Cookery::Recipe
   end
 
   def install 
-    cleanenv_safesystem "#{destdir}/bin/ruby install.rb --plugindir=#{destdir}/share/mcollective/plugins"
+    environment.with_clean { safesystem( "#{destdir}/bin/ruby install.rb --plugindir=#{destdir}/share/mcollective/plugins") }
     etc('mcollective/plugin.d').mkpath
     etc('mcollective/ssl/clients').mkpath
 
@@ -25,7 +25,7 @@ class Mcollective < FPM::Cookery::Recipe
 
   def gem_install(name, version = nil)
     v = version.nil? ? '' : "-v #{version}"
-    cleanenv_safesystem "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}"
+    environment.with_clean { safesystem( "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}") }
   end
 
   platforms [:ubuntu, :debian] do
