@@ -71,16 +71,25 @@ class PuppetGem < FPM::Cookery::Recipe
 
   def gem_install(name, version = nil)
     v = version.nil? ? '' : "-v #{version}"
-    cleanenv_safesystem "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}"
+    environment.with_clean { safesystem( "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}" ) }
   end
 
   def install_files_common 
+
       etc('puppet').mkdir
       var('lib/puppet/ssl/certs').mkpath
       chmod 0771, var('lib/puppet/ssl')
       var('lib/puppet/state').mkpath
       var('run/puppet').mkdir
       destdir('share/puppet/ext/rack/files').install workdir('ext/puppet/rack/config.ru')  => 'config.ru'
+
+      # Write package version as fact
+      File.open( '/tmp/sf_puppet_version.txt', 'w' ) do |f|
+          f.write("sf_puppet_version=#{version}")
+      end
+
+      etc('facter/facts.d').install_p '/tmp/sf_puppet_version.txt', 'sf_puppet_version.txt'
+
   end
 
   platforms [:ubuntu, :debian] do
