@@ -16,8 +16,8 @@ class AwsGems < FPM::Cookery::Recipe
   end
 
   def build
-    gem_install 'aws-sdk',     '1.50.0'
-    gem_install 'fog',         '1.23.0'
+    gem_install 'aws-sdk',     '2.1.18'
+    gem_install 'fog',         '1.33.0'
     gem_install 'inifile',     '3.0.0'
   end
 
