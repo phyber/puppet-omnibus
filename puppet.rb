@@ -35,7 +35,7 @@ class PuppetGem < FPM::Cookery::Recipe
     gem_install 'bundler',            '1.6.4'
     gem_install 'librarian-puppet',   '1.3.2'
     gem_install 'net-ldap',           '0.9.0'
-    gem_install 'sf-hiera-aws',       '0.0.1'
+    gem_install 'sf-hiera-aws',       '0.0.2'
     gem_install name,                 version
   end
 
