@@ -2,7 +2,7 @@ class PuppetGem < FPM::Cookery::Recipe
   description 'Puppet gem stack'
 
   name 'puppet'
-  version '3.4.3'
+  version '3.7.4'
 
   source "nothing", :with => :noop
 
@@ -18,23 +18,23 @@ class PuppetGem < FPM::Cookery::Recipe
 
   def build
     # Install gems using the gem command from destdir
-    gem_install 'facter',             '1.7.4'
-    gem_install 'json_pure',          '1.8.0'
-    gem_install 'hiera',              '1.3.1'
-    gem_install 'deep_merge',         '1.0.0'
-    gem_install 'rgen',               '0.6.5'
-    gem_install 'ruby-augeas',        '0.4.1'
-    gem_install 'ruby-shadow',        '2.2.0'
-    gem_install 'gpgme',              '2.0.2'
-    gem_install 'hiera-eyaml',        '2.0.2'
+    gem_install 'facter',             '2.3.0'
+    gem_install 'json_pure',          '1.8.1'
+    gem_install 'hiera',              '1.3.4'
+    gem_install 'deep_merge',         '1.0.1'
+    gem_install 'rgen',               '0.7.0'
+    gem_install 'ruby-augeas',        '0.5.0'
+    gem_install 'ruby-shadow',        '2.3.4'
+    gem_install 'gpgme',              '2.0.7'
+    gem_install 'hiera-eyaml',        '2.0.8'
     gem_install 'zcollective',        '0.0.12'
     gem_install 'zabbixapi',          '2.0.0'
-    gem_install 'unicorn',            '4.8.2'
-    gem_install 'rack',               '1.5.2'
-    gem_install 'pg',                 '0.17.1'
-    gem_install 'bundler',            '1.6.4'
-    gem_install 'librarian-puppet',   '1.3.2'
-    gem_install 'net-ldap',           '0.9.0'
+    gem_install 'unicorn',            '4.9.0'
+    gem_install 'rack',               '1.6.4'
+    gem_install 'pg',                 '0.18.3'
+    gem_install 'bundler',            '1.10.6'
+    gem_install 'librarian-puppet',   '2.2.1'
+    gem_install 'net-ldap',           '0.11'
     gem_install 'sf-hiera-aws',       '0.0.2'
     gem_install name,                 version
   end
@@ -56,7 +56,7 @@ class PuppetGem < FPM::Cookery::Recipe
     destdir('../bin').install workdir('omnibus.bin'), 'zcollective'
     destdir('../bin').install workdir('omnibus.bin'), 'eyaml'
     destdir('../bin').install workdir('omnibus.bin'), 'librarian-puppet'
-     
+
     with_trueprefix do
       # Symlink binaries to PATH using update-alternatives
       create_post_install_hook
@@ -75,8 +75,7 @@ class PuppetGem < FPM::Cookery::Recipe
     environment.with_clean { safesystem( "#{destdir}/bin/gem install --no-ri --no-rdoc #{v} #{name}" ) }
   end
 
-  def install_files_common 
-
+  def install_files_common
       etc('puppet').mkdir
       var('lib/puppet/ssl/certs').mkpath
       chmod 0771, var('lib/puppet/ssl')
@@ -90,7 +89,6 @@ class PuppetGem < FPM::Cookery::Recipe
       end
 
       etc('facter/facts.d').install_p '/tmp/sf_puppet_version.txt', 'sf_puppet_version.txt'
-
   end
 
   platforms [:ubuntu, :debian] do

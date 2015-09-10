@@ -3,7 +3,7 @@ class PuppetOmnibus < FPM::Cookery::Recipe
 
   section 'Utilities'
   name 'scalefactory'
-  version '3.4.2'
+  version '3.7.3'
   description 'Puppet Omnibus package'
   vendor 'fpm'
   maintainer '<jon@scalefactory.com>'
